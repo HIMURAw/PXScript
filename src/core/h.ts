@@ -1,25 +1,44 @@
-function h(tag: string, props: any = {}, ...children: any[]) {
-  const el = document.createElement(tag)
+export type VNode = {
+  type: string | Function;
+  props: Record<string, any>;
+  children: (VNode | string)[];
+};
 
-  for (const key in props) {
-    const value = props[key]
-
-    if (key.startsWith("on") && typeof value === "function") {
-      el.addEventListener(key.substring(2).toLowerCase(), value)
-    } else {
-      el.setAttribute(key, value)
-    }
-  }
-
-  children.forEach(child => {
-    if (typeof child === "string") {
-      el.appendChild(document.createTextNode(child))
-    } else if (child instanceof Node) {
-      el.appendChild(child)
-    }
-  })
-
-  return el
+export function h(
+  type: string | Function,
+  props: Record<string, any> | null = {},
+  ...children: any[]
+): VNode {
+  return {
+    type,
+    props: props || {},
+    children: children.flat().filter((c) => c != null),
+  };
 }
 
-export { h };
+export function Fragment({ children }: { children: any }) {
+  return children;
+}
+
+// JSX Runtime support
+export const jsx = h;
+export const jsxs = h;
+export const jsxDEV = h;
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any;
+    }
+    interface Element extends VNode { }
+    interface ElementClass {
+      render(): any;
+    }
+    interface ElementAttributesProperty {
+      props: {};
+    }
+    interface ElementChildrenAttribute {
+      children: {};
+    }
+  }
+}
