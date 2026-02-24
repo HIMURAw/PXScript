@@ -1,0 +1,30 @@
+{
+  "name": "pxscript",
+  "version": "1.0.0",
+  "description": "PXScript is a modern, web-focused programming language inspired by JavaScript and TypeScript. Its goal is to provide developers with a simple, readable syntax while supporting optional static typing for safer code. PXScript code can be compiled to JavaScript, making it runnable directly in browsers or Node.js environments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HIMURAw/PXScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HIMURAw/PXScript/issues"
+  },
+  "homepage": "https://github.com/HIMURAw/PXScript#readme",
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "moo": "^0.5.2",
+    "nearley": "^2.20.1"
+  }
+}
